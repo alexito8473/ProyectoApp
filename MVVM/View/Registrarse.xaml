@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoApp.MVVM.View.Registrarse"
+             Title="Registrarse">
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+            <GradientStop Color="#d3addd" Offset="0.0" />
+            <GradientStop Color="#9fb1e6" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    <ScrollView>
+        <Frame Margin="0,20,0,20" WidthRequest="300" CornerRadius="25" BorderColor="Transparent">
+            <Frame.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#9fb1e6" Offset="0.0" />
+                    <GradientStop Color="#d3addd" Offset="1.0" />
+                </LinearGradientBrush>
+            </Frame.Background>
+            <VerticalStackLayout
+         Spacing="25">
+                <Label
+         Text="Resgistrarse"
+                    TextColor="Black"
+         Style="{StaticResource Headline}"
+         SemanticProperties.HeadingLevel="Level1" />
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Nombre" TextColor="Black" VerticalOptions="Center"/>
+                    <Frame BorderColor="Transparent" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0" Margin="10,0">
+                        <Entry  TextColor="Black"  BackgroundColor="Azure" x:Name="miNombre"/>
+                    </Frame>
+                 </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Gmail" TextColor="Black" VerticalOptions="Center"/>
+                    <Frame BorderColor="Transparent" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0" Margin="10,0">
+                        <Entry TextColor="Black" Background="Azure" x:Name="miGmail"/>
+                    </Frame>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Contraseña" TextColor="Black" VerticalOptions="Center"/>
+                    <Frame BorderColor="Transparent" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0" Margin="10,0">
+                        <Entry TextColor="Black" Background="Azure" x:Name="miContraseña"/>
+                    </Frame>
+                </StackLayout>
+                <Button Text="Selecciona una imagen de tu cara" x:Name="subirBoton" Clicked="subirBoton_Clicked"/>
+                <Frame BorderColor="Transparent" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0" Margin="10,0">
+                    <Image x:Name="imageUrl" Source="desconocido.jpg" Aspect="AspectFill"/>
+                </Frame>
+     
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Centro docente" TextColor="Black" VerticalOptions="Center"/>
+                    <Frame BorderColor="Transparent" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0" Margin="10,0">
+                        <Entry TextColor="Black" Background="Azure" x:Name="miCentroDocente"/>
+                    </Frame>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Profesor responsable" TextColor="Black" VerticalOptions="Center"/>
+                    <Frame BorderColor="Transparent" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0" Margin="10,0">
+                        <Entry TextColor="Black" Background="Azure" x:Name="miprofesorResponable"/>
+                    </Frame>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Centro de trabajo" TextColor="Black" VerticalOptions="Center"/>
+                    <Frame BorderColor="Transparent" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0" Margin="10,0">
+                        <Entry TextColor="Black" Background="Azure" x:Name="miCentroDeTrabajo"/>
+                    </Frame>
+          
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Tutor de trabajo" TextColor="Black" VerticalOptions="Center"/>
+                    <Frame BorderColor="Transparent" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0" Margin="10,0">
+                        <Entry TextColor="Black" Background="Azure" x:Name="miTutorDeTrabajo"/>
+                    </Frame>
+                </StackLayout>
+                <Button
+         x:Name="butRegistrarse"
+         Text="Registrarse"
+                    Clicked="butRegistrarse_Clicked"
+         HorizontalOptions="Fill" />
+            </VerticalStackLayout>
+        </Frame>
+    </ScrollView>
+</ContentPage>
