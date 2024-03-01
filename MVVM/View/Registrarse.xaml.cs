@@ -1,8 +1,15 @@
+
+using Firebase.Auth;
+using Firebase.Auth.Providers;
+using ProyectoApp.ConexionFirebase;
+using ProyectoApp.Constante;
 namespace ProyectoApp.MVVM.View;
 
 public partial class Registrarse : ContentPage
 {
-	public Registrarse()
+    private FileResult imagenSubida;
+    private Conexión conexion = new Conexión();
+    public Registrarse()
 	{
 		InitializeComponent();
 	}
@@ -11,10 +18,18 @@ public partial class Registrarse : ContentPage
         var foto = await MediaPicker.PickPhotoAsync();
 		if (foto != null ) {
 			imageUrl.Source = foto.FullPath;
-
+            imagenSubida = foto;
         }
     }
-    private void butRegistrarse_Clicked(object sender, EventArgs e) {
-
+    private async void butRegistrarse_Clicked(object sender, EventArgs e) {
+        try {
+            await conexion.registrarse(miGmail.Text, miContraseña.Text);
+            await conexion.RegistrarGuardarDatosAsync(nombre: miNombre.Text,email:miGmail.Text,password:miContraseña.Text,imagen: imagenSubida, centroDocente:miCentroDocente.Text, profesorResponsable:miprofesorResponable.Text, centroTrabajo:miCentroDeTrabajo.Text, tutorTrabajo:miTutorDeTrabajo.Text);
+            await DisplayAlert("Datos corecto", "Todos los datos han sido subido a la nube", "Vale");
+            await Navigation.PopAsync(true);
+        } catch
+        {
+            await DisplayAlert("Fallo en la autentificación", "Datos incorrectos", "Vale");
+        }
     }
 }

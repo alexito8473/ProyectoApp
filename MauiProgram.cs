@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Firebase.Auth;
+using Firebase.Auth.Providers;
+using Microsoft.Extensions.Logging;
 
 namespace ProyectoApp {
     public static class MauiProgram {
@@ -14,7 +16,7 @@ namespace ProyectoApp {
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
-
+            
             return builder.Build();
         }
     }

@@ -38,7 +38,8 @@
             x:Name="butInicioSesion"
             Text="Iniciar sesión" 
             SemanticProperties.Hint="Counts the number of times you click"
-            HorizontalOptions="Fill" />
+            HorizontalOptions="Fill" 
+                    Clicked="butInicioSesion_ClickedAsync"/>
                 <Button
             x:Name="butRegistrarse"
             Text="Registrarse" 

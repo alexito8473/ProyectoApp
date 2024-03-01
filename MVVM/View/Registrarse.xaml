@@ -75,7 +75,7 @@
                 <Button
          x:Name="butRegistrarse"
          Text="Registrarse"
-                    Clicked="butRegistrarse_Clicked"
+            Clicked="butRegistrarse_Clicked"
          HorizontalOptions="Fill" />
             </VerticalStackLayout>
         </Frame>
