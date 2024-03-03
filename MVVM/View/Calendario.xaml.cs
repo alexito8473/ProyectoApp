@@ -1,6 +1,7 @@
 
 using ProyectoApp.ConexionFirebase;
 using ProyectoApp.MVVM.Model;
+using ProyectoApp.MVVM.ViewModel;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
@@ -11,33 +12,34 @@ public partial class Calendario : ContentPage
 {
     private string gmailUsuario;
     private string contraseñaUsuario;
-    private Conexión conexion= new Conexión();
-    public ObservableCollection<Usuario> Lista { get; set; } = new ObservableCollection<Usuario>();
-    public ObservableCollection<Año> ListaAño { get; set; } = new ObservableCollection<Año>();
-    public ObservableCollection<Año> ListaMeses { get; set; } = new ObservableCollection<Año>();
-    public ICommand ActualizarLista { get; set; }
-    public Calendario(string gmailUsuario, string contraseñaUsuario){
+    UsuarioViewModel usuario;
+    public Calendario(string gmailUsuario, string contraseñaUsuario, UsuarioViewModel usuario) {
 		InitializeComponent();
         this.gmailUsuario = gmailUsuario;
         this.contraseñaUsuario = contraseñaUsuario;
-        CargarLista();
-        BindingContext = this;
-       
+        this.usuario = usuario;
+        BindingContext = usuario;
+      
     }
-    public void CargarLista() {
-        Usuario user;
-        conexion.GetCliente().Child("Usuario").AsObservable<Usuario>()
-                .Subscribe((user) => {
-                    if (user.Object != null) {
-                        if (user.Object.Contraseña.ToLower() == contraseñaUsuario.ToLower() && user.Object.Gmail.ToLower() == gmailUsuario.ToLower()) {
-                            Lista.Add(user.Object);
-                            foreach (Año año in user.Object.Años) { 
-                                ListaAño.Add(año);
-                            }  
-                        }
-                    }
-                });;
-    }
-   
 
+    private void Button_Clicked(object sender, EventArgs e) {
+        if (usuario.año!=null) {
+            if (usuario.ListaMesesFaltantes.Count > 0) {
+                Navigation.PushAsync(new AñadirMes(usuario));
+            } else {
+                DisplayAlert("Información", "No puedes tener más meses", "ok");
+            }
+        } else {
+            DisplayAlert("Información", "Debes seleccionar antes un año", "ok");
+        }
+    }
+
+    private void Button_Clicked_1(object sender, EventArgs e) {
+        Navigation.PushAsync(new InformacionMes(usuario));
+    }
+
+    private void Button_Clicked_2(object sender, EventArgs e) {
+        butAño.IsVisible = true;
+        butMes.IsVisible = true;
+    }
 }

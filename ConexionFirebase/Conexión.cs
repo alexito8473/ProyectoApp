@@ -1,21 +1,16 @@
 ﻿using Firebase.Auth.Providers;
 using Firebase.Auth;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Firebase.Database;
 using ProyectoApp.MVVM.Model;
 using Firebase.Database.Query;
 using Firebase.Storage;
-using System.Collections;
+
 
 namespace ProyectoApp.ConexionFirebase {
     public class Conexión {
         private FirebaseClient cliente = new FirebaseClient(Constante.Constante.REALMTIME_STORAGE) ;
 
-        public FirebaseClient GetCliente() {
+        public  FirebaseClient GetCliente() {
             return cliente ;
         }
         private FirebaseAuthClient obtenerToken() {
@@ -26,7 +21,6 @@ namespace ProyectoApp.ConexionFirebase {
                 {
                 new EmailProvider()
                 }
-
             });
             return client;
         }
@@ -52,7 +46,7 @@ namespace ProyectoApp.ConexionFirebase {
             return await task;
         }
         public async Task RegistrarGuardarDatosAsync(string nombre, string email, string password, FileResult imagen,string centroDocente,string profesorResponsable,string centroTrabajo,string tutorTrabajo) {
-                await cliente.Child("Usuario").PostAsync(new Usuario {
+                await cliente.Child("Usuario/"+ email.ToLower().Split("@")[0]).PutAsync(new Usuario {
                     NombreCompleto = nombre,
                     Gmail=email.ToLower(),
                     Contraseña= password,
@@ -61,9 +55,22 @@ namespace ProyectoApp.ConexionFirebase {
                     ProfesorResponsable=profesorResponsable,
                     CentroTrabajo=centroTrabajo,
                     TutorTrabajo=tutorTrabajo,
-                    Años=new List<Año>() { new Año()}
-                });;;
+                    Años=new List<Año>() { new Año() }
+                });;
            // await cliente.Child("Calendario").PostAsync(new CalendarioModel(email, password)); ;
+        }
+        public async Task ActualizarGuardarDatosAsync(string nombre, string email, string password, string imagen, string centroDocente, string profesorResponsable, string centroTrabajo, string tutorTrabajo, List<Año> año) {
+            await cliente.Child("Usuario/" + email.ToLower().Split("@")[0]).PutAsync(new Usuario {
+                NombreCompleto = nombre,
+                Gmail = email.ToLower(),
+                Contraseña = password,
+                Imagen = imagen,
+                CentroDocente = centroDocente,
+                ProfesorResponsable = profesorResponsable,
+                CentroTrabajo = centroTrabajo,
+                TutorTrabajo = tutorTrabajo,
+                Años = año
+            }); ;
         }
 
     }

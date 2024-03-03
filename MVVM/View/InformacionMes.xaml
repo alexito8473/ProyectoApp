@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProyectoApp.MVVM.View.Calendario"
-             xmlns:local="clr-namespace:ProyectoApp.MVVM.ViewModel"
-             Title="Calendario">
+             x:Class="ProyectoApp.MVVM.View.InformacionMes"
+                 xmlns:local="clr-namespace:ProyectoApp.MVVM.ViewModel"
+             Title="InformacionMes">
     <ContentPage.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
             <GradientStop Color="#d3addd" Offset="0.0" />
@@ -20,24 +20,17 @@
             </Frame.Background>
             <VerticalStackLayout Spacing="35">
                 <Label
-        Text="Calendario"
-                TextColor="Black"
+        Text="{Binding mes}"
+        TextColor="Black"
         Style="{StaticResource Headline}"
         SemanticProperties.HeadingLevel="Level1" />
-                <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
-                    <Button Text="Información usuario" Margin="0,0,10,0" BackgroundColor="#502bd5" TextColor="White"/>
-                    <Button Text="Cargar año" Clicked="Button_Clicked_2" BackgroundColor="#502bd5" Command="{Binding Source={RelativeSource AncestorType={x:Type local:UsuarioViewModel}},Path=CargarAño}" TextColor="White"/>
-                </HorizontalStackLayout>
-                <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
-                    <Button IsVisible="false" x:Name="butAño" Text="Añadir año" BackgroundColor="#502bd5" TextColor="White"  Margin="0,0,10,0"/>
-                    <Button IsVisible="false" x:Name="butMes"  Text="Añadir mes" HorizontalOptions="Start" Clicked="Button_Clicked" BackgroundColor="#502bd5" Command="{Binding Source={RelativeSource AncestorType={x:Type local:UsuarioViewModel}},Path=MesesFaltantes}" TextColor="White"/>
-                </HorizontalStackLayout>
+            
                 <HorizontalStackLayout HorizontalOptions="Center">
-                    <CollectionView ItemsSource="{Binding ListaAño}">
+                    <CollectionView ItemsSource="{Binding ListaDia}">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <Grid RowDefinitions="Auto" ColumnDefinitions="Auto,Auto" RowSpacing="10" ColumnSpacing="10" Padding="5">
-                                    <Button Text="{Binding fecha}"  Grid.Column="0" Grid.Row="1"
+                                    <Button Text="{Binding DiaActual}"  Grid.Column="0" Grid.Row="1"
                                             BackgroundColor="#502bd5"
                                             Command="{Binding Source={RelativeSource AncestorType={x:Type local:UsuarioViewModel}},Path=ActualizarListaMeses}"
                                             CommandParameter="{Binding fecha}"
@@ -52,9 +45,6 @@
                                 <Grid RowDefinitions="Auto" ColumnDefinitions="Auto" RowSpacing="10" ColumnSpacing="10" Padding="5">
                                     <Button Text="{Binding Nombre}"  Grid.Column="0" Grid.Row="0"
                                             BackgroundColor="#502bd5"
-                                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:UsuarioViewModel}},Path=ObtenerMes}"
-                                            CommandParameter="{Binding Nombre}"
-                                            Clicked="Button_Clicked_1"
                                             TextColor="White"/>
 
                                 </Grid>

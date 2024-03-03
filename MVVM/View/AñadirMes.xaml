@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoApp.MVVM.View.AñadirMes"
+             xmlns:local="clr-namespace:ProyectoApp.MVVM.ViewModel"
+             Title="AñadirMes">
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+            <GradientStop Color="#d3addd" Offset="0.0" />
+            <GradientStop Color="#9fb1e6" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    <ScrollView>
+        <Frame Margin="0,20,0,20" WidthRequest="330" CornerRadius="25" BorderColor="Transparent">
+            <Frame.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#9fb1e6" Offset="0.0" />
+                    <GradientStop Color="#d3addd" Offset="1.0" />
+                </LinearGradientBrush>
+            </Frame.Background>
+            <VerticalStackLayout Spacing="35">
+                <Label Text="{Binding año}" TextColor="Black" Style="{StaticResource Headline}" SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="¿Que mes quieres escoger?" HorizontalOptions="Center" TextColor="Black" FontSize="20"/>
+                <Picker x:Name="miMes" ItemsSource="{Binding ListaMesesFaltantes}" TextColor="Black" HorizontalTextAlignment="Center" TitleColor="Black"/>
+                <Button Text="Añadir mes" Clicked="Button_ClickedAsync"/>
+            </VerticalStackLayout>
+        </Frame>
+    </ScrollView>
+</ContentPage>

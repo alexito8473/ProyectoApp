@@ -12,7 +12,13 @@ namespace ProyectoApp.MVVM.Model {
 
         public Año() {
             this.fecha = DateTime.Now.ToString("yyyy");
-            Meses = [new Mes(Mes.ObtenerNombreMes(DateTime.Now.Month))];
+            Meses = new List<Mes>();
+           // Meses.Add(new Mes(Mes.ObtenerNombreMes(DateTime.Now.Month)));
+        }
+        public Año(string fecha) {
+            this.fecha = fecha;
+            Meses = new List<Mes>();
+            Meses.Add(new Mes(Mes.ObtenerNombreMes(DateTime.Now.Month)));
         }
 
     }
