@@ -13,7 +13,6 @@ namespace ProyectoApp.MVVM.Model {
         public Dia(int dia) {
             DiaActual = dia;
             Jornadas = new List<Jornada>();
-            Jornadas.Add(new Jornada());
         }
 
     }

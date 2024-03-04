@@ -71,16 +71,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="MVVM\View\AñadirMes.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="MVVM\View\Calendario.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="MVVM\View\InformacionMes.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="MVVM\View\JornadaDia.xaml">
+	  <MauiXaml Update="MVVM\View\crearActividad.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="MVVM\View\Principal.xaml">

@@ -20,7 +20,7 @@ public partial class Registrarse : ContentPage
     private async void butRegistrarse_Clicked(object sender, EventArgs e) {
         try {
             await conexion.registrarse(miGmail.Text, miContraseña.Text);
-            await conexion.RegistrarGuardarDatosAsync(nombre: miNombre.Text,email:miGmail.Text,password:miContraseña.Text,imagen: imagenSubida, centroDocente:miCentroDocente.Text, profesorResponsable:miprofesorResponable.Text, centroTrabajo:miCentroDeTrabajo.Text, tutorTrabajo:miTutorDeTrabajo.Text);
+            await conexion.RegistrarGuardarDatosAsync(nombre: miNombre.Text,email:miGmail.Text,password:miContraseña.Text,imagen: imagenSubida, centroDocente:miCentroDocente.Text, profesorResponsable:miprofesorResponable.Text, centroTrabajo:miCentroDeTrabajo.Text, tutorTrabajo:miTutorDeTrabajo.Text,grado:miGrado.Text);
             await DisplayAlert("Datos corecto", "Todos los datos han sido subido a la nube", "Vale");
             await Navigation.PopAsync(true);
         } catch

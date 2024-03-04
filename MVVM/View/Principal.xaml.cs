@@ -18,8 +18,8 @@ public partial class Principal : ContentPage
     private async void butInicioSesion_ClickedAsync(object sender, EventArgs e) {
         try {
             await conexion.iniciar_sesion(miEmail.Text, miContraseña.Text);
-            await DisplayAlert("Fallo en la autentificación", "Has iniciado sesión", "Vale");
-            await Navigation.PushAsync(new Calendario(miEmail.Text, miContraseña.Text,new ViewModel.UsuarioViewModel(miEmail.Text, miContraseña.Text)));
+            await DisplayAlert("Conexion correcta", "Has iniciado sesión", "Vale");
+            await Navigation.PushAsync(new Calendario(new ViewModel.UsuarioViewModel(miEmail.Text, miContraseña.Text)));
         } catch {
             await DisplayAlert("Fallo en la autentificación", "El usuario o contraseña son incorrectos", "Vale");
         }

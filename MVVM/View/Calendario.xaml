@@ -18,60 +18,26 @@
                     <GradientStop Color="#d3addd" Offset="1.0" />
                 </LinearGradientBrush>
             </Frame.Background>
-            <VerticalStackLayout Spacing="35">
-                <Label
-        Text="Calendario"
-                TextColor="Black"
-        Style="{StaticResource Headline}"
-        SemanticProperties.HeadingLevel="Level1" />
-                <StackLayout Orientation="Horizontal">
-                    <Button HorizontalOptions="FillAndExpand" Text="Información usuario" Margin="0,0,10,0" BackgroundColor="#502bd5" TextColor="White"/>
-                    <Button  Text="Cargar año"  Clicked="Button_Clicked_2" BackgroundColor="#502bd5" Command="{Binding Source={RelativeSource AncestorType={x:Type local:UsuarioViewModel}},Path=CargarAño}" TextColor="White"/>
+            <VerticalStackLayout Spacing="25">
+                <Label Text="Calendario" TextColor="Black" Style="{StaticResource Headline}" SemanticProperties.HeadingLevel="Level1" />
+                <StackLayout Orientation="Vertical" Spacing="20">
+                    <Button HorizontalOptions="FillAndExpand" Text="Información usuario" BackgroundColor="#502bd5" TextColor="White"/>
+                    <DatePicker WidthRequest="130" HeightRequest="50" MinimumDate="01/01/2024" BackgroundColor="#502bd5" MaximumDate="12/31/2030" x:Name="miFecha" DateSelected="miFecha_DateSelected"/>
                 </StackLayout>
-                <StackLayout Orientation="Horizontal" >
-                    <Button IsVisible="false" x:Name="butAño" HorizontalOptions="FillAndExpand" Text="Añadir año" BackgroundColor="#502bd5" TextColor="White" />
-                    <Button IsVisible="false"  Margin="10,0,0,0" x:Name="butMes" HorizontalOptions="FillAndExpand"  Text="Añadir mes" Clicked="Button_Clicked" BackgroundColor="#502bd5" Command="{Binding Source={RelativeSource AncestorType={x:Type local:UsuarioViewModel}},Path=MesesFaltantes}" TextColor="White"/>
-                </StackLayout>
-                <HorizontalStackLayout HorizontalOptions="Center">
-                    <VerticalStackLayout>
-                        <Label TextColor="Black" Text="Año" x:Name="textAño" IsVisible="false" WidthRequest="45" HorizontalTextAlignment="Center" FontSize="22"/>
-                        <CollectionView ItemsSource="{Binding ListaAño}" HorizontalOptions="Center" >
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid RowDefinitions="Auto" ColumnDefinitions="Auto" >
-                                    <Button Text="{Binding fecha}"  Grid.Column="0" Grid.Row="0"
-                                            BackgroundColor="#502bd5"
-                                            WidthRequest="100"
-                                            Margin="0,10,0,0"
-                                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:UsuarioViewModel}},Path=ActualizarListaMeses}"
-                                            CommandParameter="{Binding fecha}"
-                                      Clicked="Button_Clicked_3"    
-                                            TextColor="White"/>
-                                </Grid>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                    </VerticalStackLayout>
-                    <VerticalStackLayout Margin="10,0,0,0">
-                        <Label TextColor="Black" Text="Mes" IsVisible="false" x:Name="textMes" HorizontalTextAlignment="Center" FontSize="22"/>
-                        <CollectionView ItemsSource="{Binding ListaMes}">
-                        <CollectionView.ItemTemplate >
-                            <DataTemplate>
-                                <Grid RowDefinitions="Auto" ColumnDefinitions="Auto">
-                                        <Button Text="{Binding Nombre}"  Grid.Column="0" Grid.Row="0"
-                                            BackgroundColor="#502bd5"
-                                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:UsuarioViewModel}},Path=ObtenerMes}"
-                                            CommandParameter="{Binding Nombre}"
-                                            Clicked="Button_Clicked_1" 
-                                            Margin="0,10,0,0"
-                                                WidthRequest="120"
-                                            TextColor="White"/>
-                                    </Grid>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                    </VerticalStackLayout>
-                </HorizontalStackLayout>
+                <Label Text="No hay actividades agregadas" x:Name="mensaje" IsVisible="false" Visual="Default" HorizontalOptions="Center" TextColor="Black"/>
+                <Button Text="Introducir una actividad"  x:Name="butAñadir" Clicked="butAñadir_Clicked" />
+                <CollectionView  WidthRequest="250" ItemsSource="{Binding ListaJornada}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid RowDefinitions="Auto" ColumnDefinitions="Auto">
+                                <VerticalStackLayout Grid.Column="0" Grid.Row="0" HorizontalOptions="Center">
+                                    <Label Text="Actividad Desarrollada" HorizontalOptions="Center"/>
+                                    <Entry Text="{Binding ActividadDesarrollada}"  TextColor="White" IsReadOnly="True"/>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </VerticalStackLayout>
         </Frame>
     </ScrollView>

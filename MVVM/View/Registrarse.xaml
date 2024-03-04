@@ -46,7 +46,12 @@
                 <Frame BorderColor="Transparent" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0" Margin="10,0">
                     <Image x:Name="imageUrl" Source="desconocido.jpg" Aspect="AspectFill"/>
                 </Frame>
-     
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Grado" TextColor="Black" VerticalOptions="Center"/>
+                    <Frame BorderColor="Transparent" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0" Margin="10,0">
+                        <Entry TextColor="Black" Background="Azure" x:Name="miGrado"/>
+                    </Frame>
+                </StackLayout>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Centro docente" TextColor="Black" VerticalOptions="Center"/>
                     <Frame BorderColor="Transparent" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0" Margin="10,0">

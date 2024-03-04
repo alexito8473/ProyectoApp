@@ -10,6 +10,7 @@ namespace ProyectoApp.MVVM.Model {
         public required string Gmail { get; set; }
         public required string Contraseña { get; set; }
         public required string Imagen { get; set; }
+        public required string Grado { get; set; }
         public required string CentroDocente { get; set; }
         public required string ProfesorResponsable { get; set; }
         public required string CentroTrabajo { get; set; }

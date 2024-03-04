@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,18 +11,27 @@ namespace ProyectoApp.MVVM.Model {
         public List<Dia> Dias { get; set; }
 
         public Mes(string nombre) {
+            int dias= diastotales(nombre);
             Nombre=nombre;
             Dias =new List<Dia>();
-            Dias.Add(new Dia(1));
+            for (int i=1;i<=dias;i++) {
+                Dias.Add(new Dia(dias));
+            }
         }
-        public Mes() {
-            Nombre = ObtenerNombreMes(DateTime.Now.Month);
-            Dias = new List<Dia>();
-        }
-        public Mes(int dia) {
-            Nombre = ObtenerNombreMes(DateTime.Now.Month);
-            Dias = new List<Dia>();
-            Dias.Add(new Dia(dia));
+        private int diastotales(string nombre) {
+            int dias=31;
+            switch (nombre) {
+                case "Febrero":
+                dias = 29;
+                break;
+                case "Abril":
+                case "Junio":
+                case "Septiembre":
+                case "Noviembre":  
+                dias = 30;
+                break;
+            }
+            return dias;
         }
         public static string ObtenerNombreMes(int numeroMes) {
             switch (numeroMes) {
