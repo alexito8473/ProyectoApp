@@ -10,12 +10,12 @@ public partial class AñadirMes : ContentPage
 	{
 		InitializeComponent();
 		this.usuarioMio = usuarioMio;
-        BindingContext = this.usuarioMio;
+        BindingContext = usuarioMio;
     }
 
     public async void Button_ClickedAsync(object sender, EventArgs e) {
         if (miMes.SelectedItem!=null) {
-            await usuarioMio.añadirPrimerMesAsync();
+            await usuarioMio.añadirPrimerUnMesAsync(miMes.SelectedItem.ToString());
             await Navigation.PopAsync(true);
         } else {
             await  DisplayAlert("Error","No has seleccionado un més","Ok");

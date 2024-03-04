@@ -57,7 +57,6 @@ namespace ProyectoApp.ConexionFirebase {
                     TutorTrabajo=tutorTrabajo,
                     Años=new List<Año>() { new Año() }
                 });;
-           // await cliente.Child("Calendario").PostAsync(new CalendarioModel(email, password)); ;
         }
         public async Task ActualizarGuardarDatosAsync(string nombre, string email, string password, string imagen, string centroDocente, string profesorResponsable, string centroTrabajo, string tutorTrabajo, List<Año> año) {
             await cliente.Child("Usuario/" + email.ToLower().Split("@")[0]).PutAsync(new Usuario {

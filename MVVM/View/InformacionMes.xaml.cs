@@ -13,4 +13,7 @@ public partial class InformacionMes : ContentPage
 		BindingContext= usuario;
 	}
 
+    private void Button_Clicked(object sender, EventArgs e) {
+		Navigation.PushAsync(new JornadaDia());
+    }
 }

@@ -40,6 +40,11 @@ public partial class Calendario : ContentPage
 
     private void Button_Clicked_2(object sender, EventArgs e) {
         butAño.IsVisible = true;
+       textAño.IsVisible=true;
+    }
+
+    private void Button_Clicked_3(object sender, EventArgs e) {
         butMes.IsVisible = true;
+        textMes.IsVisible = true;
     }
 }

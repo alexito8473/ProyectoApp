@@ -21,11 +21,13 @@ namespace ProyectoApp.MVVM.ViewModel
         public ObservableCollection<Año> ListaAño { get; set; } = new ObservableCollection<Año>();
         public ObservableCollection<Mes> ListaMes { get; set; } = new ObservableCollection<Mes>();
         public ObservableCollection<Dia> ListaDia { get; set; } = new ObservableCollection<Dia>();
+        public ObservableCollection<Dia> ListaJornada { get; set; } = new ObservableCollection<Dia>();
         public ICommand ActualizarListaMeses { get; set; }
         public ICommand AñadirMes { get; set; }
         public ICommand CargarAño { get; set; }
         public ICommand MesesFaltantes { get; set; }
         public ICommand ObtenerMes { get; set; }
+        public ICommand ObtenerJornada { get; set; }
         public List<string> ListaMesesFaltantes { get; set; }=new List<string>();
         public string año { get; set; } = null;
         public string mes { get; set; } = null;
@@ -55,13 +57,33 @@ namespace ProyectoApp.MVVM.ViewModel
         }
         public async Task añadirPrimerUnMesAsync(string mes) {
             for (int i = 0; i < usuario.Años.Count; i++) {
-                if (usuario.Años[i].Meses.Count == 0) {
-                    usuario.Años[i].Meses.Add(new Mes(mes));
+                   if (usuario.Años[i].fecha.Equals(año)) {
+                        usuario.Años[i].Meses.Add(new Mes(mes));
+                  }
+            }           
+            await conexion.ActualizarGuardarDatosAsync(usuario.NombreCompleto, usuario.Gmail, usuario.Contraseña, usuario.Imagen, usuario.CentroDocente, usuario.ProfesorResponsable, usuario.CentroTrabajo, usuario.TutorTrabajo, usuario.Años);
+            ListaMes.Clear();
+            for (int i = 0; i < usuario.Años.Count; i++) {
+                if (usuario.Años[i].fecha.Equals(año)) {
+                    for (int j = 0; j < usuario.Años[i].Meses.Count; j++) {
+                        ListaMes.Add(usuario.Años[i].Meses[j]);
+                    }
                 }
             }
-            await conexion.ActualizarGuardarDatosAsync(usuario.NombreCompleto, usuario.Gmail, usuario.Contraseña, usuario.Imagen, usuario.CentroDocente, usuario.ProfesorResponsable, usuario.CentroTrabajo, usuario.TutorTrabajo, usuario.Años);
         }
         public async Task añadirPrimerMesAsync() {
+            bool cambio = false;
+            for (int i = 0; i < usuario.Años.Count; i++) {
+                if (usuario.Años[i].Meses.Count == 0) {
+                    usuario.Años[i].Meses.Add(new Mes(Mes.ObtenerNombreMes(DateTime.Now.Month)));
+                    cambio = true;
+                }
+            }
+            if (cambio) {
+                await conexion.ActualizarGuardarDatosAsync(usuario.NombreCompleto, usuario.Gmail, usuario.Contraseña, usuario.Imagen, usuario.CentroDocente, usuario.ProfesorResponsable, usuario.CentroTrabajo, usuario.TutorTrabajo, usuario.Años);
+            }
+        }
+        public async Task añadirPrimerDiaAsync() {
             bool cambio = false;
             for (int i = 0; i < usuario.Años.Count; i++) {
                 if (usuario.Años[i].Meses.Count == 0) {
@@ -87,7 +109,26 @@ namespace ProyectoApp.MVVM.ViewModel
                             }
                         }
                     }
-                 
+                }
+            });
+        }
+        public void ConstruirComandoCargarJornada() {
+            ObtenerJornada = new Command(parametro => {
+                ListaDia.Clear();
+                mes = (string)parametro;
+                for (int i = 0; i < usuario.Años.Count; i++) {
+                    if (usuario.Años[i].fecha.Equals(año)) {
+                        for (int j = 0; j < usuario.Años[i].Meses.Count; j++) {
+                            if (usuario.Años[i].Meses[j].Nombre.Equals(mes)) {
+                                for (int k = 0; k < usuario.Años[i].Meses[j].Dias.Count; k++) {
+                                    if () {
+
+                                    }
+                                    ListaDia.Add(usuario.Años[i].Meses[j].Dias[k]);
+                                }
+                            }
+                        }
+                    }
                 }
             });
         }

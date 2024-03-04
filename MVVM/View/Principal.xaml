@@ -10,7 +10,7 @@
         </LinearGradientBrush>
     </ContentPage.Background>
     <ScrollView>
-        <Frame Margin="0,20,0,20"  WidthRequest="300" CornerRadius="25" BorderColor="Transparent">
+        <Frame Margin="0,20,0,20"  WidthRequest="300" CornerRadius="29" BorderColor="Transparent">
             <Frame.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
                     <GradientStop Color="#9fb1e6" Offset="0.0" />
@@ -21,11 +21,11 @@
             Spacing="35">
                 <Label
             Text="Inicio de sesión"
-                    TextColor="Black"
+            TextColor="Black"
             Style="{StaticResource Headline}"
             SemanticProperties.HeadingLevel="Level1" />
                 <StackLayout Orientation="Horizontal">
-                    <Frame BorderColor="Transparent" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0" Margin="10,0">
+                    <Frame BorderColor="Transparent" CornerRadius="15" HorizontalOptions="FillAndExpand" Padding="0" Margin="10,0">
                         <Entry TextColor="Black" Background="Azure" Placeholder="Gmail" x:Name="miEmail" />
                     </Frame>
                 </StackLayout>

@@ -17,7 +17,11 @@ namespace ProyectoApp.MVVM.Model {
         public Mes() {
             Nombre = ObtenerNombreMes(DateTime.Now.Month);
             Dias = new List<Dia>();
-            Dias.Add(new Dia(1));
+        }
+        public Mes(int dia) {
+            Nombre = ObtenerNombreMes(DateTime.Now.Month);
+            Dias = new List<Dia>();
+            Dias.Add(new Dia(dia));
         }
         public static string ObtenerNombreMes(int numeroMes) {
             switch (numeroMes) {

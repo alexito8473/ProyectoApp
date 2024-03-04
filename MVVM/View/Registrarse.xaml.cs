@@ -1,8 +1,4 @@
-
-using Firebase.Auth;
-using Firebase.Auth.Providers;
 using ProyectoApp.ConexionFirebase;
-using ProyectoApp.Constante;
 namespace ProyectoApp.MVVM.View;
 
 public partial class Registrarse : ContentPage
