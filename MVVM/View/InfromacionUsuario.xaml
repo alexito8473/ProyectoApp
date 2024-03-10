@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoApp.MVVM.View.InfromacionUsuario"
+             Title="InfromacionUsuario">
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+            <GradientStop Color="#d3addd" Offset="0.0" />
+            <GradientStop Color="#9fb1e6" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <LinearGradientBrush x:Key="gradient" StartPoint="0,0" EndPoint="1,0">
+                <GradientStop Color="#FFFACD" Offset="0.0" />
+                <GradientStop Color="#C1FFC1" Offset="1.0" />
+            </LinearGradientBrush>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView>
+        <Frame Margin="0,20,0,20" WidthRequest="330" CornerRadius="25" BorderColor="Transparent">
+            <Frame.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#9fb1e6" Offset="0.0" />
+                    <GradientStop Color="#d3addd" Offset="1.0" />
+                </LinearGradientBrush>
+            </Frame.Background>
+            <VerticalStackLayout Spacing="25">
+                <Label FontSize="40" HorizontalTextAlignment="Center" Text="Alumno" TextColor="Black" />
+                <Border WidthRequest="256"
+                        Stroke="{StaticResource gradient}"
+                        StrokeThickness="8">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="35" />
+                    </Border.StrokeShape>
+                    <Image x:Name="miImagen"  />
+                </Border>
+                <StackLayout HorizontalOptions="Center" Orientation="Vertical">
+                    <Label FontSize="20" HorizontalTextAlignment="Center" Text="Nombre" TextColor="Black" />
+                    <Label HorizontalTextAlignment="Center" x:Name="miNombre" TextColor="Black" />
+                </StackLayout>
+                <StackLayout HorizontalOptions="Center" Orientation="Vertical">
+                    <Label FontSize="20" HorizontalTextAlignment="Center" Text="Email" TextColor="Black" />
+                    <Label HorizontalTextAlignment="Center" x:Name="miGmail" TextColor="Black" />
+                </StackLayout>
+                <StackLayout HorizontalOptions="Center" Orientation="Vertical">
+                    <Label FontSize="20" HorizontalTextAlignment="Center" Text="Grado" TextColor="Black" />
+                    <Label HorizontalTextAlignment="Center" x:Name="miGrado" TextColor="Black" />
+                </StackLayout>
+                <StackLayout HorizontalOptions="Center" Orientation="Vertical">
+                    <Label FontSize="20" HorizontalTextAlignment="Center" Text="Centro docente" TextColor="Black" />
+                    <Label HorizontalTextAlignment="Center" x:Name="miCentroDo" TextColor="Black" />
+                </StackLayout>
+                <StackLayout HorizontalOptions="Center" Orientation="Vertical">
+                    <Label FontSize="20" HorizontalTextAlignment="Center" Text="Profesor responsable" TextColor="Black" />
+                    <Label HorizontalTextAlignment="Center" x:Name="miProfesor" TextColor="Black" />
+                </StackLayout>
+                <StackLayout HorizontalOptions="Center" Orientation="Vertical">
+                    <Label FontSize="20" HorizontalTextAlignment="Center" Text="Centro trabajo" TextColor="Black" />
+                    <Label HorizontalTextAlignment="Center" x:Name="miCentroTra" TextColor="Black" />
+                </StackLayout>
+                <StackLayout HorizontalOptions="Center" Orientation="Vertical">
+                    <Label FontSize="20" HorizontalTextAlignment="Center" Text="Tutor del centro de trabajo" TextColor="Black" />
+                    <Label HorizontalTextAlignment="Center" x:Name="miTutor" TextColor="Black" />
+                </StackLayout>
+            </VerticalStackLayout>
+        </Frame>
+    </ScrollView>
+</ContentPage>

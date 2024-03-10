@@ -57,7 +57,6 @@ namespace ProyectoApp.ConexionFirebase {
                     TutorTrabajo=tutorTrabajo,
                     Años=new List<Año>() { new Año()},
                     Grado=grado
-                   
                 });;
         }
         public async Task ActualizarGuardarDatosAsync(string nombre, string email, string password, string imagen, string centroDocente, string profesorResponsable, string centroTrabajo, string tutorTrabajo, List<Año> año, string grado) {
@@ -74,6 +73,5 @@ namespace ProyectoApp.ConexionFirebase {
                 Grado = grado
             }); ;
         }
-
     }
 }

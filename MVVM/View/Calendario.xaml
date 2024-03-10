@@ -11,33 +11,51 @@
         </LinearGradientBrush>
     </ContentPage.Background>
     <ScrollView>
-        <Frame Margin="0,20,0,20" WidthRequest="330" CornerRadius="25" BorderColor="Transparent">
+        <Frame Margin="20"  CornerRadius="25" BorderColor="Transparent">
             <Frame.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
                     <GradientStop Color="#9fb1e6" Offset="0.0" />
                     <GradientStop Color="#d3addd" Offset="1.0" />
                 </LinearGradientBrush>
             </Frame.Background>
-            <VerticalStackLayout Spacing="25">
+            <VerticalStackLayout Spacing="25" HorizontalOptions="Center">
                 <Label Text="Calendario" TextColor="Black" Style="{StaticResource Headline}" SemanticProperties.HeadingLevel="Level1" />
                 <StackLayout Orientation="Vertical" Spacing="20">
-                    <Button HorizontalOptions="FillAndExpand" Text="Información usuario" BackgroundColor="#502bd5" TextColor="White"/>
-                    <DatePicker WidthRequest="130" HeightRequest="50" MinimumDate="01/01/2024" BackgroundColor="#502bd5" MaximumDate="12/31/2030" x:Name="miFecha" DateSelected="miFecha_DateSelected"/>
+                    <Button WidthRequest="300" Clicked="Button_Clicked" HorizontalOptions="FillAndExpand" Text="Información usuario" BackgroundColor="#502bd5" TextColor="White"/>
+                    <DatePicker WidthRequest="130" HeightRequest="50" MinimumDate="01/01/2024" BackgroundColor="#502bd5" MaximumDate="12/31/2024" x:Name="miFecha" DateSelected="miFecha_DateSelected"/>
                 </StackLayout>
                 <Label Text="No hay actividades agregadas" x:Name="mensaje" IsVisible="false" Visual="Default" HorizontalOptions="Center" TextColor="Black"/>
-                <Button Text="Introducir una actividad"  x:Name="butAñadir" Clicked="butAñadir_Clicked" />
-                <CollectionView  WidthRequest="250" ItemsSource="{Binding ListaJornada}">
+                <Button WidthRequest="300" Text="Introducir una actividad"  x:Name="butAñadir" Clicked="butAñadir_Clicked" />
+                <VerticalStackLayout HorizontalOptions="CenterAndExpand">
+                    <CollectionView HorizontalOptions="CenterAndExpand" ItemsSource="{Binding ListaJornada}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Grid RowDefinitions="Auto" ColumnDefinitions="Auto">
-                                <VerticalStackLayout Grid.Column="0" Grid.Row="0" HorizontalOptions="Center">
-                                    <Label Text="Actividad Desarrollada" HorizontalOptions="Center"/>
-                                    <Entry Text="{Binding ActividadDesarrollada}"  TextColor="White" IsReadOnly="True"/>
-                                </VerticalStackLayout>
+                            <Grid RowDefinitions="Auto" ColumnDefinitions="Auto" HorizontalOptions="Center">
+                                <Frame HorizontalOptions="Center" BorderColor="Transparent" BackgroundColor="Grey" Grid.Column="0" Grid.Row="0" CornerRadius="20"  Margin="0,0,0,10" >
+                                    <VerticalStackLayout Grid.Column="0" Grid.Row="0" HorizontalOptions="Center">
+                                        <Label Text="Actividad Desarrollada" HorizontalOptions="Center"/>
+                                        <Label HorizontalOptions="Center" Text="{Binding ActividadDesarrollada}"  TextColor="White"/>
+                                        <Label Text="Tiempo empleado" HorizontalOptions="Center"/>
+                                        <Label HorizontalOptions="Center" Text="{Binding TiempoEmpleado}" TextColor="White"/>
+                                        <Label Text="Observaciones" HorizontalOptions="Center"/>
+                                        <Label  HorizontalOptions="Center" Text="{Binding Observaciones}" TextColor="White" />
+                                        <StackLayout Orientation="Horizontal" Margin="0,10,0,0">
+                                            <Button Text="Modificar" Margin="0,0,10,0" 
+                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:UsuarioViewModel}},Path=obtenerId}"
+                                                    CommandParameter="{Binding id}"
+                                                    Clicked="Button_ClickedModificar"/>
+                                            <Button Text="Borrar"       
+                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:UsuarioViewModel}},Path=obtenerId}"
+                                                    CommandParameter="{Binding id}"
+                                                    Clicked="Button_ClickedBorrar"/>
+                                        </StackLayout>
+                                    </VerticalStackLayout>
+                                </Frame>
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
+                </VerticalStackLayout>
             </VerticalStackLayout>
         </Frame>
     </ScrollView>

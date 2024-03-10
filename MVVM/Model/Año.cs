@@ -7,7 +7,7 @@
         public Año(string fecha) {
             this.fecha = fecha;
             Meses = new List<Mes>();
-            for (int i = 0; i < 12; i++) {
+            for (int i = 1; i <= 12; i++) {
                 Meses.Add(new Mes(Mes.ObtenerNombreMes(i)));
             }
         }

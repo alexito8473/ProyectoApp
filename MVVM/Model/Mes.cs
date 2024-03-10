@@ -15,7 +15,7 @@ namespace ProyectoApp.MVVM.Model {
             Nombre=nombre;
             Dias =new List<Dia>();
             for (int i=1;i<=dias;i++) {
-                Dias.Add(new Dia(dias));
+                Dias.Add(new Dia(i));
             }
         }
         private int diastotales(string nombre) {

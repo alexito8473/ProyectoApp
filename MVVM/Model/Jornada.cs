@@ -14,8 +14,11 @@ namespace ProyectoApp.MVVM.Model {
             ActividadDesarrollada = "ejmeplo";
             Observaciones = "ejemplo";
         }
-        public Jornada(int id) {
+        public Jornada(int id,string actividad,double tiempo,string observaciones) {
             this.id = id;
+            ActividadDesarrollada= actividad;
+            TiempoEmpleado = tiempo;
+            Observaciones = observaciones;
         }
     }
 }

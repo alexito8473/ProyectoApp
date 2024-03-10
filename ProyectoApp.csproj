@@ -62,10 +62,10 @@
 
 	<ItemGroup>
 		<PackageReference Include="FirebaseAuthentication.net" Version="4.1.0" />
-		<PackageReference Include="FirebaseDatabase.net" Version="4.1.0" />
+		<PackageReference Include="FirebaseDatabase.net" Version="4.2.0" />
 		<PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.7" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.7" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 	</ItemGroup>
@@ -75,6 +75,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="MVVM\View\crearActividad.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MVVM\View\InfromacionUsuario.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MVVM\View\ModificarJornada.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="MVVM\View\Principal.xaml">

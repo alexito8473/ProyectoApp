@@ -14,9 +14,17 @@ namespace ProyectoApp.Constante {
         public const String STORAGE = "proyectointerfaces-459eb.appspot.com";
         */
         //Firebase 2
+        /*
         public const String API_WEB = "AIzaSyD7NCQd1ma866KFGA-e5_KAQOPc1IC8Eeg";
         public const String AuthDomain = "proyectointerfaces2.firebaseapp.com";
         public const String REALMTIME_STORAGE = "https://proyectointerfaces2-default-rtdb.europe-west1.firebasedatabase.app/";
         public const String STORAGE = "proyectointerfaces2.appspot.com";
+        */    
+        //Firebase 3
+        public const String API_WEB = "AIzaSyCz7IuTsVpJOYLVEeEisoXi2b0u5jUNepM";
+        public const String AuthDomain = "proyectoalumno-e949d.firebaseapp.com";
+        public const String REALMTIME_STORAGE = "https://proyectoalumno-e949d-default-rtdb.europe-west1.firebasedatabase.app/";
+        public const String STORAGE = "proyectoalumno-e949d.appspot.com";
+
     }
 }

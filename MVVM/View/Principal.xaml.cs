@@ -1,12 +1,14 @@
-using Firebase.Auth;
 using ProyectoApp.ConexionFirebase;
+using ProyectoApp.MVVM.Model;
+using ProyectoApp.MVVM.ViewModel;
 
 namespace ProyectoApp.MVVM.View;
 
 public partial class Principal : ContentPage
 {
     private Conexión conexion= new Conexión();
-	public Principal()
+    private UsuarioViewModel usuario;
+    public Principal()
 	{
 		InitializeComponent();
     }
@@ -16,13 +18,27 @@ public partial class Principal : ContentPage
     }
 
     private async void butInicioSesion_ClickedAsync(object sender, EventArgs e) {
-        try {
-            await conexion.iniciar_sesion(miEmail.Text, miContraseña.Text);
-            await DisplayAlert("Conexion correcta", "Has iniciado sesión", "Vale");
-            await Navigation.PushAsync(new Calendario(new ViewModel.UsuarioViewModel(miEmail.Text, miContraseña.Text)));
-        } catch {
-            await DisplayAlert("Fallo en la autentificación", "El usuario o contraseña son incorrectos", "Vale");
+        string mensaje = "";
+        bool isEmpty = false;
+        if (string.IsNullOrEmpty(miEmail.Text)) {
+            mensaje = "Introduce un gmail.";
+            isEmpty = true;
         }
+        if (string.IsNullOrEmpty(miContraseña.Text)) {
+            mensaje = mensaje+"Introduce una contraseña.";
+            isEmpty = true;
+        }
+        if (isEmpty) {
+            await DisplayAlert("Advertencia", mensaje, "OK");
+        } else {
+            try {
+                await conexion.iniciar_sesion(miEmail.Text, miContraseña.Text);
+                usuario = new UsuarioViewModel(miEmail.Text);
+                await Navigation.PushAsync(new Calendario(usuario));
+            } catch {
+                await DisplayAlert("Fallo en la autentificación", "El usuario o contraseña son incorrectos", "Ok");
+            }
+        } 
        
     }
 }

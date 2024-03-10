@@ -6,24 +6,40 @@ namespace ProyectoApp.MVVM.View;
 public partial class Calendario : ContentPage
 {
 
-    UsuarioViewModel usuario;
+    private UsuarioViewModel usuario;
     public Calendario(UsuarioViewModel usuario) {
 		InitializeComponent();
         this.usuario = usuario;
-        BindingContext = usuario;
+        establecer();
+        BindingContext = this.usuario;
     }
     private void miFecha_DateSelected(object sender, DateChangedEventArgs e) {
-        comprobacion();
+        establecer();
     }
-    private void comprobacion() {
-        bool controlled = usuario.ListaJornada.Count == 0 ? true : false;
+    private void establecer() {
+        try {
             usuario.cargarJornada(miFecha.Date.Day, miFecha.Date.Month, miFecha.Date.Year);
-            mensaje.IsVisible = controlled;
-            butAñadir.IsVisible = controlled;
-        DisplayAlert("asd", miFecha.Date.Day.ToString(), "ok");
+            mensaje.IsVisible = usuario.ListaJornada.Count == 0 ? true : false;
+        }catch(Exception ex) {
+            Navigation.PopAsync();
+        }
+       
+    }
+    private void butAñadir_Clicked(object sender, EventArgs e) {
+        Navigation.PushAsync(new crearActividad(usuario, miFecha));
+        mensaje.IsVisible = usuario.ListaJornada.Count == 0 ? true : false;
     }
 
-    private void butAñadir_Clicked(object sender, EventArgs e) {
-          Navigation.PushAsync(new crearActividad(usuario, miFecha));
+    private void Button_Clicked(object sender, EventArgs e) {
+        Navigation.PushAsync(new InfromacionUsuario(usuario));
+    }
+
+    private void Button_ClickedModificar(object sender, EventArgs e) {
+        Navigation.PushAsync(new ModificarJornada(usuario, miFecha.Date.Day, miFecha.Date.Month, miFecha.Date.Year));
+    }
+
+    private void Button_ClickedBorrar(object sender, EventArgs e) {
+        usuario.borrarJornada(miFecha.Date.Day, miFecha.Date.Month, miFecha.Date.Year);
+        DisplayAlert("Información","Se ha borrado correctamente de la base de datos","ok");
     }
 }
