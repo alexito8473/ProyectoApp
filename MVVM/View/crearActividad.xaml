@@ -30,19 +30,23 @@
                 <StackLayout Orientation="Vertical">
                     <Label HorizontalOptions="Center" FontSize="20" Text="Actividad desarrollada" TextColor="Black" VerticalOptions="Center" />
                     <Frame BorderColor="Transparent" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0" Margin="10,0">
-                        <Entry TextColor="Black" Background="Azure" x:Name="miActividad"/>
+                        <Entry Placeholder="He realizado...." TextColor="Black" Background="Azure" x:Name="miActividad"/>
                     </Frame>
                 </StackLayout>
-                <StackLayout Orientation="Vertical">
-                    <Label HorizontalOptions="Center" FontSize="20" Text="Tiempo empleado" TextColor="Black" VerticalOptions="Center" />
-                    <Frame BorderColor="Transparent" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0" Margin="10,0">
-                        <Entry Keyboard="Numeric" TextColor="Black" Background="Azure" x:Name="miTiempoEmpleado"/>
-                    </Frame>
+                <StackLayout Orientation="Vertical" >
+                    <Label HorizontalTextAlignment="Center" FontSize="20" Text="Tiempo empleado" TextColor="Black" VerticalOptions="Center" />
+                    <VerticalStackLayout>
+                        <Label FontSize="20" Margin="10"  HorizontalTextAlignment="Center"  x:Name="miTiempoEmpleado" TextColor="Black" />
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                            <Button Clicked="Button_Clicked"  Text="-" Margin="10,0"/>
+                            <Button Clicked="Button_Clicked_1"  Text="+" Margin="10,0"/>
+                        </StackLayout>
+                    </VerticalStackLayout>
                 </StackLayout>
                 <StackLayout Orientation="Vertical">
                     <Label HorizontalOptions="Center" FontSize="20" Text="Observaciones" TextColor="Black" VerticalOptions="Center" />
                     <Frame BorderColor="Transparent" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0" Margin="10,0">
-                        <Entry TextColor="Black" Background="Azure" x:Name="miObservaciones"/>
+                        <Entry Placeholder="He visto que...." TextColor="Black" Background="Azure" x:Name="miObservaciones"/>
                     </Frame>
                 </StackLayout>
                 <Button Text="Creara actividad" Clicked="Button_ClickedAsync"/>

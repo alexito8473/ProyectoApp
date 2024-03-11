@@ -45,7 +45,7 @@ namespace ProyectoApp.ConexionFirebase {
              .PutAsync(await imagen.OpenReadAsync());
             return await task;
         }
-        public async Task RegistrarGuardarDatosAsync(string nombre, string email, string password, FileResult imagen,string centroDocente,string profesorResponsable,string centroTrabajo,string tutorTrabajo, string grado) {
+        public async Task RegistrarGuardarDatosAsync(string nombre, string email, string password, FileResult imagen,string centroDocente,string profesorResponsable,string centroTrabajo,string tutorTrabajo, string grado, string cicloFormativo) {
                 await cliente.Child("Usuario/"+ email.ToLower().Split("@")[0]).PutAsync(new Usuario {
                     NombreCompleto = nombre,
                     Gmail=email.ToLower(),
@@ -56,10 +56,11 @@ namespace ProyectoApp.ConexionFirebase {
                     CentroTrabajo=centroTrabajo,
                     TutorTrabajo=tutorTrabajo,
                     Años=new List<Año>() { new Año()},
-                    Grado=grado
-                });;
+                    CicloFormativo= cicloFormativo,
+                    Grado =grado
+                });;;
         }
-        public async Task ActualizarGuardarDatosAsync(string nombre, string email, string password, string imagen, string centroDocente, string profesorResponsable, string centroTrabajo, string tutorTrabajo, List<Año> año, string grado) {
+        public async Task ActualizarGuardarDatosAsync(string nombre, string email, string password, string imagen, string centroDocente, string profesorResponsable, string centroTrabajo, string tutorTrabajo, List<Año> año, string grado, string cicloFormativo) {
             await cliente.Child("Usuario/" + email.ToLower().Split("@")[0]).PutAsync(new Usuario {
                 NombreCompleto = nombre,
                 Gmail = email.ToLower(),
@@ -70,7 +71,8 @@ namespace ProyectoApp.ConexionFirebase {
                 CentroTrabajo = centroTrabajo,
                 TutorTrabajo = tutorTrabajo,
                 Años = año,
-                Grado = grado
+                Grado = grado,
+                CicloFormativo = cicloFormativo,
             }); ;
         }
     }

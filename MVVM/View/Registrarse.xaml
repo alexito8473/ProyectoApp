@@ -46,6 +46,12 @@
                     <Image x:Name="imageUrl" Source="desconocido.jpg" Aspect="AspectFill"/>
                 </Frame>
                 <StackLayout Orientation="Horizontal">
+                    <Label Text="Ciclo formativo" TextColor="Black" VerticalOptions="Center" WidthRequest="120" FontSize="20"/>
+                    <Frame BorderColor="Transparent" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0" Margin="10,0">
+                        <Entry TextColor="Black" Background="Azure" x:Name="miCiclo"/>
+                    </Frame>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
                     <Label Text="Grado" TextColor="Black" VerticalOptions="Center" WidthRequest="120" FontSize="20"/>
                     <Frame BorderColor="Transparent" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0" Margin="10,0">
                         <Entry TextColor="Black" Background="Azure" x:Name="miGrado"/>
