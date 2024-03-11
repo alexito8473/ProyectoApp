@@ -1,6 +1,8 @@
-﻿using ProyectoApp.ConexionFirebase;
+﻿using Firebase.Database;
+using ProyectoApp.ConexionFirebase;
 using ProyectoApp.MVVM.Model;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Windows.Input;
 
 namespace ProyectoApp.MVVM.ViewModel
@@ -19,7 +21,7 @@ namespace ProyectoApp.MVVM.ViewModel
         /// <remarks>
         /// El atributo instancia la calse Conexión para poder actualizar los datos del usuario.
         /// </remarks>
-        private Conexión conexion = new Conexión();
+        private Conexión conexion ;
         /// <summary> Atributo de la clase UsuarioViewModel. </summary>
         /// <remarks>
         /// El atributo instancia el usuario que vamos a tratar.n Se contruye sus propios get y set.
@@ -40,14 +42,16 @@ namespace ProyectoApp.MVVM.ViewModel
         /// El atributo almacena una lista de jornadas el usuario específico.   
         /// </remarks>
         public ObservableCollection<Jornada> ListaJornada { get; set; } = new ObservableCollection<Jornada>();
+        private FirebaseClient cliente = new FirebaseClient(Constante.Constante.REALMTIME_STORAGE);
         /// <summary> Constructor de la clase UsuarioViewModel </summary>
         /// <remarks>
         /// Se instancia el atributo gmailUsuario, además se construyen los comandos del sistema, 
         /// además de obtener el alumno que queremos.
         /// </remarks>
         /// <param name="gmailUsuario">Gmail del usuario</param>
-        public UsuarioViewModel(string gmailUsuario) {
+        public UsuarioViewModel(string gmailUsuario, Conexión conexion) {
             this.gmailUsuario = gmailUsuario.ToLower();
+            this.conexion = conexion;
             CargarUsuario();
             ConstruirMetodoObtenerId();
         }
@@ -64,16 +68,20 @@ namespace ProyectoApp.MVVM.ViewModel
         /// <remarks> 
         /// Con el método buscaremos en la firebase el usuario que vayamos a trabajar con el.
         /// </remarks>
-        public void CargarUsuario() {
+        public async Task CargarUsuario() {
             conexion.GetCliente().Child("Usuario").AsObservable<Usuario>()
                         .Subscribe((user) => {
-                            if (user.Object != null) {
-                                if ( user.Object.Gmail.ToLower().Equals(gmailUsuario.ToLower())) {
-                                    usuario=user.Object ;
+                            if (user.Object.NombreCompleto==null ) {
+                                if (user.Object.Gmail.ToLower()==gmailUsuario.ToLower()) {
+                                    usuario = user.Object;
                                     añadirMeses();
+                                    Debug.WriteLine("hola" + user.Object.NombreCompleto);
                                 }
+                                Debug.WriteLine("hola" + user.Object.Gmail.ToLower());
                             }
                         });
+            Debug.WriteLine("adios "+ gmailUsuario);
+
         }
         /// <summary> Método para añadir los meses al usuario</summary>
         /// <remarks> 

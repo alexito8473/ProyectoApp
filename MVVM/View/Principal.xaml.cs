@@ -8,8 +8,7 @@ public partial class Principal : ContentPage
 {
     private Conexión conexion= new Conexión();
     private UsuarioViewModel usuario;
-    public Principal()
-	{
+    public Principal(){
 		InitializeComponent();
     }
 
@@ -33,7 +32,7 @@ public partial class Principal : ContentPage
         } else {
             try {
                 await conexion.iniciar_sesion(miEmail.Text, miContraseña.Text);
-                usuario = new UsuarioViewModel(miEmail.Text);
+                usuario = new UsuarioViewModel(miEmail.Text,conexion);
                 await Navigation.PushAsync(new Calendario(usuario));
             } catch {
                 await DisplayAlert("Fallo en la autentificación", "El usuario o contraseña son incorrectos", "Ok");

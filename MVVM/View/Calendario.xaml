@@ -19,6 +19,7 @@
                 </LinearGradientBrush>
             </Frame.Background>
             <VerticalStackLayout Spacing="25" HorizontalOptions="Center">
+                <Button Text="Actualizar" Margin="0,0,10,0" Clicked="Button_Clicked_1Async"/>
                 <Label Text="Calendario" TextColor="Black" Style="{StaticResource Headline}" SemanticProperties.HeadingLevel="Level1" />
                 <StackLayout Orientation="Vertical" Spacing="20">
                     <Button WidthRequest="300" Clicked="Button_Clicked" HorizontalOptions="FillAndExpand" Text="Información usuario" BackgroundColor="#502bd5" TextColor="White"/>

@@ -12,6 +12,10 @@ public partial class crearActividad : ContentPage{
     /// <summary> Atributo de la clase crearActividad</summary>
     /// <remarks> El atributo es usado para almacenar la fecha de la actividad.</remarks>
     private DatePicker fecha;
+    /// <summary> Constructor de la clase crearActividad</summary>
+    /// <remarks> Se instancia los componentes que tiene el programa. Como la fecha que vamos a mostrar </remarks>
+    /// <param name="usuario">Nos pasamos el el videmodel que controla al usuario que hemos escogido</param>
+    /// <param name="fecha">La fecha que vamos a crear una actividad</param>
     public crearActividad(UsuarioViewModel usuario,DatePicker fecha){
 		InitializeComponent();
 		this.usuario = usuario;
@@ -22,7 +26,10 @@ public partial class crearActividad : ContentPage{
         miTiempoEmpleado.Text = "1 hora";
         BindingContext = this;
 	}
-
+    /// <summary> Botón de la clase crearActividad</summary>
+    /// <remarks> Realiza las comprobaciones para poder crear una actividad. </remarks>
+    /// <param name="e">Evento del método</param>
+    /// <param name="sender"> Objecto del método</param>
     private async void Button_ClickedAsync(object sender, EventArgs e) {
         string mensaje = "";
         bool control = true;
@@ -43,6 +50,10 @@ public partial class crearActividad : ContentPage{
        
     }
 
+    /// <summary> Botón de la clase crearActividad</summary>
+    /// <remarks> Realiza las comprobaciones para añadir una quitar 1 hora del total de la actividad. </remarks>
+    /// <param name="e">Evento del método</param>
+    /// <param name="sender"> Objecto del método</param>
     private void Button_Clicked(object sender, EventArgs e) {
         if (miTiempoEmpleado.Text=="1 hora") {
             DisplayAlert("Advertencia", "No puede ser menor que 1 hora", "Ok");
@@ -50,7 +61,10 @@ public partial class crearActividad : ContentPage{
             miTiempoEmpleado.Text = (int.Parse(miTiempoEmpleado.Text.Replace("hora","").Trim()) - 1).ToString() + " hora";
         }
     }
-
+    /// <summary> Botón de la clase crearActividad</summary>
+    /// <remarks> Realiza las comprobaciones para añadir una añadir 1 hora del total de la actividad. </remarks>
+    /// <param name="e">Evento del método</param>
+    /// <param name="sender"> Objecto del método</param>
     private void Button_Clicked_1(object sender, EventArgs e) {
         if (miTiempoEmpleado.Text == "8 hora") {
             DisplayAlert("Advertencia", "No puede ser menor que 8 hora", "Ok");

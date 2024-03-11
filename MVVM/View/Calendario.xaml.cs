@@ -14,7 +14,6 @@ public partial class Calendario : ContentPage{
     public Calendario(UsuarioViewModel usuario) {
 		InitializeComponent();
         this.usuario = usuario;
-        establecer();
         BindingContext = this.usuario;
     }
     /// <summary> Método de la clase Calendario</summary>
@@ -72,5 +71,9 @@ public partial class Calendario : ContentPage{
         usuario.borrarJornada(miFecha.Date.Day, miFecha.Date.Month, miFecha.Date.Year);
         DisplayAlert("Información","Se ha borrado correctamente de la base de datos","ok");
         establecer();
+    }
+
+    private void Button_Clicked_1Async(object sender, EventArgs e) {
+        usuario.CargarUsuario();
     }
 }
