@@ -5,19 +5,13 @@
     /// </remarks>
     public class Año {
         /// <summary> Atributo de la clase Año </summary>
-        /// <remarks>
-        /// El atributo tine almacenado el año específico que pertenece
-        /// </remarks>
+        /// <remarks>El atributo tine almacenado el año específico que pertenece</remarks>
         public string fecha { get; set; }
         /// <summary> Atributo de la clase Año </summary>
-        /// <remarks>
-        /// El atributo tine almacenado una lista de sus meses
-        /// </remarks>
+        /// <remarks>El atributo tine almacenado una lista de sus meses</remarks>
         public List<Mes> Meses { get; set; }
         /// <summary> Constructor de la clase Año </summary>
-        /// <remarks>
-        /// Se instancia los el año que es es como la lista de meses que tiene.
-        /// </remarks>
+        /// <remarks>Se instancia los el año que es es como la lista de meses que tiene. </remarks>
         /// <param name="fecha">La fecha que se trata del año en cuestión</param>
         public Año(string fecha) {
             this.fecha = fecha;
@@ -27,9 +21,7 @@
             }
         }
         /// <summary> Constructor de la clase Año </summary>
-        /// <remarks>
-        /// Se instancia los el año con el año actual.
-        /// </remarks>
+        /// <remarks> Se instancia los el año con el año actual.</remarks>
         public Año() {
             this.fecha = DateTime.Now.ToString("yyyy");
             Meses = new List<Mes>();

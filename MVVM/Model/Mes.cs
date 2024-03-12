@@ -30,7 +30,8 @@ namespace ProyectoApp.MVVM.Model {
         }
         /// <summary>Método de la clase Mes</summary>
         /// <remarks> Se trata un método que nos devuelve la cantidad de dias que tiene un més en concreto. </remarks>
-        /// <param name="nombre">El nombre del mes</param>
+        /// <param name="nombre"> El nombre del mes</param>
+        /// <returns> Numero de dias</returns>
         private int diastotales(string nombre) {
             int dias=31;
             switch (nombre) {
@@ -49,6 +50,7 @@ namespace ProyectoApp.MVVM.Model {
         /// <summary>Método de la clase Mes</summary>
         /// <remarks> Se trata de un numero que nos devuelve el nombre del més, dependiendo del numero que hayamos introducido. </remarks>
         /// <param name="numeroMes">El numero del mes</param>
+        /// <returns> Numero del mes</returns>
         public static string ObtenerNombreMes(int numeroMes) {
             switch (numeroMes) {
                 case 1: return "Enero";
@@ -68,6 +70,7 @@ namespace ProyectoApp.MVVM.Model {
         }
         /// <summary>Método de la clase Mes</summary>
         /// <remarks> Se trata un método nos crea una lista de todos los meses de un año. </remarks>
+        /// <returns> Lista con los nombre de los meses</returns>
         public static List<string> ListaNombreMeses() {
             var list = new List<string>();
             for (int i=0;i<12;i++) {

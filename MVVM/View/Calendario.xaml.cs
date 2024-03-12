@@ -7,13 +7,14 @@ namespace ProyectoApp.MVVM.View;
 public partial class Calendario : ContentPage{
     /// <summary> Atributo de la clase Calendario</summary>
     /// <remarks> El atributo es usado para poder almacenar los método que vamos a usar en el programa.</remarks>
-    private UsuarioViewModel usuario;
+    private UsuarioViewModel usuario=null;
     /// <summary> Constructor de la clase Calendario</summary>
     /// <remarks> Se instancia los componentes que tiene el programa. </remarks>
     /// <param name="usuario">Nos pasamos el el videmodel que controla al usuario que hemos escogido</param>
     public Calendario(UsuarioViewModel usuario) {
 		InitializeComponent();
         this.usuario = usuario;
+        establecer();
         BindingContext = this.usuario;
     }
     /// <summary> Método de la clase Calendario</summary>
@@ -28,12 +29,12 @@ public partial class Calendario : ContentPage{
     private void establecer() {
         try {
             if (usuario.usuario.Años==null) {
-                Navigation.PopAsync();
+                DisplayAlert("Advertencia","Aun no se han recopilado todos los datos","Ok");
             }
             usuario.cargarJornada(miFecha.Date.Day, miFecha.Date.Month, miFecha.Date.Year);
             mensaje.IsVisible = usuario.ListaJornada.Count == 0 ? true : false;
         }catch {
-            Navigation.PopAsync();
+            DisplayAlert("Advertencia", "Aun no se han recopilado todos los datos", "Ok");
         }
     }
     /// <summary> Botón de la clase Calendario</summary>
@@ -41,21 +42,29 @@ public partial class Calendario : ContentPage{
     /// <param name="e">Evento del método</param>
     /// <param name="sender"> Objecto del método</param>
     private void butAñadir_Clicked(object sender, EventArgs e) {
-        Navigation.PushAsync(new crearActividad(usuario, miFecha));
-        establecer();
+        if (usuario.usuario != null) {
+            Navigation.PushAsync(new crearActividad(usuario, miFecha));
+            establecer();
+        } else {
+            DisplayAlert("Advertencia", "Aun no se han recopilado todos los datos", "Ok");
+        }
     }
 
     /// <summary> Botón de la clase Calendario </summary>
-    /// <remarks> Nos lleva al la pantalla de informacion el usaurio</remarks><
+    /// <remarks> Nos lleva al la pantalla de informacion el usaurio</remarks>
     /// <param name="e">Evento del método</param>
     /// <param name="sender"> Objecto del método</param>
     private void Button_Clicked(object sender, EventArgs e) {
-        Navigation.PushAsync(new InfromacionUsuario(usuario));
-        mensaje.IsVisible = usuario.ListaJornada.Count == 0 ? true : false;
+        if (usuario.usuario != null) {
+            Navigation.PushAsync(new InfromacionUsuario(usuario.usuario));
+            mensaje.IsVisible = usuario.ListaJornada.Count == 0 ? true : false;
+        } else {
+            DisplayAlert("Advertencia", "Aun no se han recopilado todos los datos", "Ok");
+        }
     }
 
     /// <summary> Botón de la clase Calendario</summary>
-    /// <remarks> Nos lleva a la vista para poder modificar una actividad</remarks><
+    /// <remarks> Nos lleva a la vista para poder modificar una actividad</remarks>
     /// <param name="e">Evento del método</param>
     /// <param name="sender"> Objecto del método</param>
     private void Button_ClickedModificar(object sender, EventArgs e) {
@@ -64,16 +73,12 @@ public partial class Calendario : ContentPage{
     }
     
     /// <summary> Botón de la clase Calendario</summary>
-    /// <remarks> El método nos borra un ajornada específica</remarks><
+    /// <remarks> El método nos borra un ajornada específica</remarks>
     /// <param name="e">Evento del método</param>
     /// <param name="sender"> Objecto del método</param>
     private void Button_ClickedBorrar(object sender, EventArgs e) {
         usuario.borrarJornada(miFecha.Date.Day, miFecha.Date.Month, miFecha.Date.Year);
         DisplayAlert("Información","Se ha borrado correctamente de la base de datos","ok");
         establecer();
-    }
-
-    private void Button_Clicked_1Async(object sender, EventArgs e) {
-        usuario.CargarUsuario();
     }
 }

@@ -28,7 +28,7 @@
                 <StackLayout Orientation="Vertical" >
                     <Label HorizontalTextAlignment="Center" FontSize="20" Text="Tiempo empleado" TextColor="Black" VerticalOptions="Center" />
                     <VerticalStackLayout>
-                        <Label FontSize="20" Margin="10"  HorizontalTextAlignment="Center"  x:Name="miTiempoEmpleado" TextColor="Black" />
+                        <Label FontSize="20" Margin="10"  HorizontalTextAlignment="Center" x:Name="miTiempoEmpleado" TextColor="Black" />
                         <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                             <Button Clicked="Button_Clicked2"  Text="-" Margin="10,0"/>
                             <Button Clicked="Button_Clicked_1"  Text="+" Margin="10,0"/>

@@ -87,6 +87,7 @@
          Text="Registrarse"
             Clicked="butRegistrarse_Clicked"
          HorizontalOptions="Fill" />
+
             </VerticalStackLayout>
         </Frame>
     </ScrollView>

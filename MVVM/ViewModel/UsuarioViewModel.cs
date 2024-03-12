@@ -13,36 +13,25 @@ namespace ProyectoApp.MVVM.ViewModel
     /// </remarks>
     public class UsuarioViewModel{
         /// <summary> Atributo de la clase UsuarioViewModel </summary>
-        /// <remarks>
-        /// El atributo tine almacenado el gmail del usuario.
-        /// </remarks>
+        /// <remarks>El atributo tine almacenado el gmail del usuario.</remarks>
         private string gmailUsuario;
         /// <summary> Atributo de la clase UsuarioViewModel, que realiza la conexión con el servidor. </summary>
-        /// <remarks>
-        /// El atributo instancia la calse Conexión para poder actualizar los datos del usuario.
-        /// </remarks>
+        /// <remarks>El atributo instancia la calse Conexión para poder actualizar los datos del usuario.</remarks>
         private Conexión conexion ;
         /// <summary> Atributo de la clase UsuarioViewModel. </summary>
-        /// <remarks>
-        /// El atributo instancia el usuario que vamos a tratar.n Se contruye sus propios get y set.
-        /// </remarks>
+        /// <remarks>El atributo instancia el usuario que vamos a tratar.n Se contruye sus propios get y set.</remarks>
         public Usuario usuario { get; set; }
         /// <summary> Comando de la clase UsuarioViewModel. </summary>
-        /// <remarks>
-        /// El comando trate de poner obtener el id que tiene cada jornada.
-        /// </remarks>
+        /// <remarks>El comando trate de poner obtener el id que tiene cada jornada.</remarks>
         public ICommand obtenerId { get; set; }
         /// <summary> Atributo de la clase UsuarioViewModel. </summary>
-        /// <remarks>
-        /// El atributo almacena el id de la jornada en su instancia.
-        /// </remarks>
+        /// <remarks>El atributo almacena el id de la jornada en su instancia.</remarks>
         public int id { get; set; }
         /// <summary> Atributo de la clase UsuarioViewModel. </summary>
         /// <remarks>
         /// El atributo almacena una lista de jornadas el usuario específico.   
         /// </remarks>
         public ObservableCollection<Jornada> ListaJornada { get; set; } = new ObservableCollection<Jornada>();
-        private FirebaseClient cliente = new FirebaseClient(Constante.Constante.REALMTIME_STORAGE);
         /// <summary> Constructor de la clase UsuarioViewModel </summary>
         /// <remarks>
         /// Se instancia el atributo gmailUsuario, además se construyen los comandos del sistema, 
@@ -65,28 +54,27 @@ namespace ProyectoApp.MVVM.ViewModel
             });
         }
         /// <summary> Método para obtener el usuario de la base de datos</summary>
-        /// <remarks> 
-        /// Con el método buscaremos en la firebase el usuario que vayamos a trabajar con el.
-        /// </remarks>
+        /// <remarks> Con el método buscaremos en la firebase el usuario que vayamos a trabajar con el. </remarks>
+        /// <returns> El task</returns>
         public async Task CargarUsuario() {
             conexion.GetCliente().Child("Usuario").AsObservable<Usuario>()
                         .Subscribe((user) => {
-                            if (user.Object.NombreCompleto==null ) {
+                            if (user.Object.NombreCompleto!=null ) {
                                 if (user.Object.Gmail.ToLower()==gmailUsuario.ToLower()) {
                                     usuario = user.Object;
                                     añadirMeses();
                                     Debug.WriteLine("hola" + user.Object.NombreCompleto);
                                 }
-                                Debug.WriteLine("hola" + user.Object.Gmail.ToLower());
                             }
                         });
+
             Debug.WriteLine("adios "+ gmailUsuario);
+            Thread.Sleep(3000);
 
         }
         /// <summary> Método para añadir los meses al usuario</summary>
-        /// <remarks> 
-        /// Si el usuario no tiene instancio los meses que su año, se le añade de inmediato.
-        /// </remarks>
+        /// <remarks> Si el usuario no tiene instancio los meses que su año, se le añade de inmediato.</remarks>
+        /// <returns> El task</returns>
         public async Task añadirMeses() {
             bool cambio = false;
             for (int i=0;i< usuario.Años.Count;i++) {
@@ -102,12 +90,11 @@ namespace ProyectoApp.MVVM.ViewModel
             }
         }
         /// <summary> Método para borrar una jornada del usuario</summary>
-        /// <remarks> 
-        /// Con el id que hemos tenido que obtener anteriormente por el comando, podemos borrar el 
-        /// </remarks>
+        /// <remarks> Con el id que hemos tenido que obtener anteriormente por el comando, podemos borrar el.</remarks>
         /// <param name="dia">Dia de la actividad</param>
         /// <param name="año">Año de la actividad</param>
         /// <param name="mes">Mes de la actividad</param>
+        /// <returns> El task</returns>
         public async Task borrarJornada(int dia, int mes, int año) {
             bool cambio = false;
             for (int i = 0; i < usuario.Años.Count; i++) {
@@ -134,12 +121,11 @@ namespace ProyectoApp.MVVM.ViewModel
             cargarJornada(dia, mes, año);
         }
         /// <summary> Método para mostrar las jornada del usuario, con un id concreto</summary>
-        /// <remarks> 
-        /// Se muestran las jornadas de un año, mes y dia concretos, con un id concreto.
-        /// </remarks>
+        /// <remarks> Se muestran las jornadas de un año, mes y dia concretos, con un id concreto.</remarks>
         /// <param name="dia">Dia de la actividad</param>
         /// <param name="año">Año de la actividad</param>
         /// <param name="mes">Mes de la actividad</param>
+        /// <returns> Una jornada en concreto</returns>
         public Jornada GetJornada(int dia, int mes, int año) {
             for (int i = 0; i < usuario.Años.Count; i++) {
                 if (usuario.Años[i].fecha.Equals("" + año)) {
@@ -196,6 +182,7 @@ namespace ProyectoApp.MVVM.ViewModel
         /// <param name="mes">Mes de la actividad</param>
         /// <param name="observaciones">Las observaciones que ha tenido</param>
         /// <param name="tiempo">El tiempo que ha tardado</param>
+        /// <returns> El task</returns>
         public async Task añadirJornadaAsync(int dia, int mes, int año,string actividad,double tiempo,string observaciones) {
             ListaJornada.Clear();
             int maxId=-1;
@@ -235,15 +222,14 @@ namespace ProyectoApp.MVVM.ViewModel
         }
 
         /// <summary> Método para actualizar una jornada del usuario</summary>
-        /// <remarks> 
-        /// Se actualiza una jornada en concreto.   
-        /// </remarks>
+        /// <remarks> Se actualiza una jornada en concreto.</remarks>
         /// <param name="actividad">La actividad que ha hecho ese dia</param>
         /// <param name="dia">Dia de la actividad</param>
         /// <param name="año">Año de la actividad</param>
         /// <param name="mes">Mes de la actividad</param>
         /// <param name="observaciones">Las observaciones que ha tenido</param>
         /// <param name="tiempo">El tiempo que ha tardado</param>
+        /// <returns> El task</returns>
         public async Task actualizarteJornadaAsync(int dia, int mes, int año, string actividad, double tiempo, string observaciones) {
             ListaJornada.Clear();
             int maxId = -1;

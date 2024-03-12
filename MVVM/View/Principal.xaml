@@ -10,7 +10,7 @@
         </LinearGradientBrush>
     </ContentPage.Background>
     <ScrollView>
-        <Frame Margin="0,20,0,20"  WidthRequest="300" HeightRequest="450" CornerRadius="29" BorderColor="Transparent">
+        <Frame Margin="0,20,0,20" CornerRadius="29" WidthRequest="300" BorderColor="Transparent">
             <Frame.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
                     <GradientStop Color="#9fb1e6" Offset="0.0" />

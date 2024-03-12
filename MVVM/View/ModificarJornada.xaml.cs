@@ -24,8 +24,7 @@ public partial class ModificarJornada : ContentPage{
     /// <param name="año">Año de la actividad</param>
     /// <param name="dia">Dia de la actividad</param>
     /// <param name="mes">Mes de la actividad</param>
-    public ModificarJornada(UsuarioViewModel usuario, int dia, int mes, int año)
-	{
+    public ModificarJornada(UsuarioViewModel usuario, int dia, int mes, int año){
 		InitializeComponent();
         this.usuario = usuario;
         Jornada jornada = usuario.GetJornada(dia, mes, año);
@@ -69,7 +68,10 @@ public partial class ModificarJornada : ContentPage{
             miTiempoEmpleado.Text = (int.Parse(miTiempoEmpleado.Text.Replace("hora", "").Trim()) - 1).ToString() + " hora";
         }
     }
-
+    /// <summary> Botón de la clase crearActividad</summary>
+    /// <remarks> Aumenta la hora  </remarks>
+    /// <param name="e">Evento del método</param>
+    /// <param name="sender"> Objecto del método</param>
     private void Button_Clicked_1(object sender, EventArgs e) {
         if (miTiempoEmpleado.Text == "8 hora") {
             DisplayAlert("Advertencia", "No puede ser menor que 8 hora", "Ok");
